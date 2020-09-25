@@ -1,0 +1,150 @@
+local SystemMessage = Instance.new("ScreenGui")
+local main = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local SystemButton = Instance.new("TextButton")
+local SayText = Instance.new("TextBox")
+local MessageButton = Instance.new("TextButton")
+local SaySystem = Instance.new("TextBox")
+local Send = Instance.new("TextButton")
+local Close = Instance.new("TextButton")
+local Open = Instance.new("Frame")
+local OpenButton = Instance.new("TextButton")
+ 
+SystemMessage.Name = "SystemMessage"
+SystemMessage.Parent = game.CoreGui
+main.Name = "main"
+main.Parent = SystemMessage
+main.BackgroundColor3 = Color3.new(1, 1, 1)
+main.BorderSizePixel = 5
+main.Position = UDim2.new(0.434030682, 0, 0.504371285, 0)
+main.Size = UDim2.new(0, 343, 0, 316)
+main.Active = true
+main.Draggable = true
+main.Visible = false
+
+Title.Name = "Title"
+Title.Parent = main
+Title.BackgroundColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+Title.BorderSizePixel = 0
+Title.Position = UDim2.new(0, 0, -0.00350874895, 0)
+Title.Size = UDim2.new(0, 343, 0, 51)
+Title.Font = Enum.Font.GothamSemibold
+Title.Text = "System Message"
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.TextSize = 14
+
+SystemButton.Name = "SystemButton"
+SystemButton.Parent = main
+SystemButton.BackgroundColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+SystemButton.Position = UDim2.new(0.0327103063, 0, 0.804195762, 0)
+SystemButton.Size = UDim2.new(0, 178, 0, 50)
+SystemButton.Font = Enum.Font.GothamSemibold
+SystemButton.Text = "What System Says"
+SystemButton.TextColor3 = Color3.new(1, 1, 1)
+SystemButton.TextSize = 14
+MessageButton.MouseButton1Click:connect(function()
+    local Say = SaySystem.Text
+end)
+
+SayText.Name = "SayText"
+SayText.Parent = main
+SayText.BackgroundColor3 = Color3.new(1, 1, 1)
+SayText.BorderSizePixel = 2
+SayText.Position = UDim2.new(0.0327103063, 0, 0.195804164, 0)
+SayText.Size = UDim2.new(0, 178, 0, 50)
+SayText.Font = Enum.Font.SourceSans
+SayText.PlaceholderText = "What You Want To Say"
+SayText.Text = ""
+SayText.TextColor3 = Color3.new(0, 0, 0)
+SayText.TextSize = 14
+SayText.TextWrapped = true
+
+MessageButton.Name = "MessageButton"
+MessageButton.Parent = main
+MessageButton.BackgroundColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+MessageButton.Position = UDim2.new(0.0327103063, 0, 0.391608328, 0)
+MessageButton.Size = UDim2.new(0, 178, 0, 50)
+MessageButton.Font = Enum.Font.GothamSemibold
+MessageButton.Text = "What You Say"
+MessageButton.TextColor3 = Color3.new(1, 1, 1)
+MessageButton.TextSize = 14
+MessageButton.MouseButton1Click:connect(function()
+    local Say = SayText.Text
+end)
+
+SaySystem.Name = "SaySystem"
+SaySystem.Parent = main
+SaySystem.BackgroundColor3 = Color3.new(1, 1, 1)
+SaySystem.BorderSizePixel = 2
+SaySystem.Position = UDim2.new(0.0327103063, 0, 0.594405532, 0)
+SaySystem.Size = UDim2.new(0, 178, 0, 50)
+SaySystem.Font = Enum.Font.SourceSans
+SaySystem.MultiLine = true
+SaySystem.PlaceholderText = "What System Says"
+SaySystem.Text = ""
+SaySystem.TextColor3 = Color3.new(0, 0, 0)
+SaySystem.TextSize = 14
+SaySystem.TextWrapped = true
+
+Send.Name = "Send"
+Send.Parent = main
+Send.BackgroundColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+Send.Position = UDim2.new(0.603498518, 0, 0.315658957, 0)
+Send.Size = UDim2.new(0, 125, 0, 180)
+Send.Font = Enum.Font.GothamSemibold
+Send.Text = "Send"
+Send.TextColor3 = Color3.new(1, 1, 1)
+Send.TextSize = 20
+Send.MouseButton1Down:connect(function()
+
+local playerinput = SayText.Text
+
+local spaces = "                                                                                                                                      "
+
+local systemtext = "{System} "
+
+local systeminput = SaySystem.Text
+
+local A_1 = playerinput .. spaces .. systemtext .. systeminput
+local A_2 = "All"
+local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+Event:FireServer(A_1, A_2)
+print(SaySystem.Text)
+end)
+
+Close.Name = "Close"
+Close.Parent = main
+Close.BackgroundColor3 = Color3.new(1, 1, 1)
+Close.BackgroundTransparency = 1
+Close.Position = UDim2.new(0.854227424, 0, -0.00350874895, 0)
+Close.Size = UDim2.new(0, 50, 0, 51)
+Close.Font = Enum.Font.GothamSemibold
+Close.Text = "X"
+Close.TextColor3 = Color3.new(1, 1, 1)
+Close.TextSize = 35
+Close.MouseButton1Down:connect(function()
+	main.Visible = false
+	Open.Visible = true
+end)
+
+Open.Name = "Open"
+Open.Parent = SystemMessage
+Open.BackgroundColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+Open.Position = UDim2.new(0, 0, 0.843283594, 0)
+Open.Size = UDim2.new(0, 150, 0, 52)
+Open.Active = true
+
+OpenButton.Name = "OpenButton"
+OpenButton.Parent = Open
+OpenButton.BackgroundColor3 = Color3.new(1, 1, 1)
+OpenButton.BackgroundTransparency = 1
+OpenButton.Size = UDim2.new(0, 150, 0, 52)
+OpenButton.Font = Enum.Font.GothamSemibold
+OpenButton.Text = "Open"
+OpenButton.TextColor3 = Color3.new(1, 1, 1)
+OpenButton.TextSize = 30
+OpenButton.TextWrapped = true
+OpenButton.MouseButton1Down:connect(function()
+	main.Visible = true
+	Open.Visible = false
+end)
